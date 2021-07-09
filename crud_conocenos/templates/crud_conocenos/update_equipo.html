@@ -1,0 +1,91 @@
+
+
+        {% extends 'core/base_admin.html' %}
+
+        {% load static %}
+
+        {% block title %} Modificar Integrante {% endblock %}
+
+        {% block img-header %} {% static 'core/assets/quienes_somos/bg_header_v2.jpg' %} {% endblock %}
+
+        {% block text_header %}
+            <h1 class="display-5 fw-bolder text-white mb-2 animate__animated animate__slideInLeft">MODIFICAR<span class="title_color"> INTEGRANTE</span></h1>
+            <p class="lead text-white-50 mb-4 animate__animated animate__slideInLeft">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+        {% endblock %}
+
+        {% block contenido %}
+            <div class="text-center mb-5">
+                <div class="feature bg-contact bg-gradient text-white rounded-3 mb-3"><i class="bi bi-pencil-fill"></i></div>
+            </div>
+            <form action="" method="POST" id="Agregar_Participante" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Campo Codigo Integrante -->
+                <div class="form-floating mb-3">
+                    {{form.idIntegrante}}
+                    <label class="form-label" for="input-codigo">Codigo Integrante</label>
+                    {{form.idIntegrante.errors}}
+                </div>
+
+                <!-- Campo Nombre -->
+                <div class="form-floating mb-3">
+                    {{form.nombre}}
+                    <label class="form-label" for="nombre">Nombre Completo</label>
+                    {{form.nombre.errors}}
+                </div>
+
+                <!-- Campo Descripcion -->
+                <div class="form-floating mb-3">
+                    {{form.description}}
+                    <label class="form-label" for="nombre">Description</label>
+                    {{form.description.errors}}
+                </div>
+
+                <!-- Campo Imangen -->
+                <div class="form mb-3">
+                    <label class="form-label" for="nombre">Imagen</label>
+                    {{form.image_conoce}}
+                    {{form.image_conoce.errors}}
+                    {% if form.instance.image_conoce%}
+                    <img src="{{form.instance.image_conoce.url}}" alt="Imagen Integrante">
+                    {% endif %}
+                </div>
+
+                <!-- Campo Link Facebook -->
+                <div class="form-floating mb-3">
+                    {{form.link_facebook}}
+                    <label class="form-label" for="nombre"><i class="bi bi-facebook"></i> Link Facebook</label>
+                    {{form.link_facebook.errors}}
+                </div>
+
+                <!-- Campo Link Instagram -->
+                <div class="form-floating mb-3">
+                    {{form.link_instagram}}
+                    <label class="form-label" for="nombre"><i class="bi bi-instagram"></i> Link Instagram</label>
+                    {{form.link_instagram.errors}}
+                </div>
+
+                <!-- Campo Link Whatsapp -->
+                <div class="form-floating mb-3">
+                    {{form.link_whatsapp}}
+                    <label class="form-label" for="nombre"><i class="bi bi-whatsapp"></i> Link Whatsapp</label>
+                    {{form.link_whatsapp.errors}}
+                </div>
+
+                <!-- Campo Link Twitter -->
+                <div class="form-floating mb-5">
+                    {{form.link_twitter}}
+                    <label class="form-label" for="nombre"><i class="bi bi-twitter"></i> Link Twitter</label>
+                    {{form.link_twitter.errors}}
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-contact btn-lg" id="enviar" type="submit">Modificar</button>
+                    <a href="{% url 'conocenos' %}" class="btn btn-contact btn-lg" id="enviar" type="submit">Volver</a>
+                </div>
+            </form>
+        {% endblock %}
+
+        {% block scripts %}
+            <script src="{% static 'core/js/my_scripts.js' %}"></script>
+        {% endblock %}

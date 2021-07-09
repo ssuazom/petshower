@@ -1,0 +1,90 @@
+
+
+        
+        
+        
+        {% extends 'core/base.html' %}
+        {% load static %}
+
+        {% block title %} Productos {% endblock %}
+
+        {% block img-header %} {% static 'core/assets/productos/bg_header_v3.jpg' %} {% endblock %}
+
+        {% block text_header %}
+            <h1 class="display-5 fw-bolder text-white mb-2 animate__animated animate__slideInLeft">AGREGAR <span class="title_color">PRODUCTO</span></h1>
+            <p class="lead text-white-50 mb-4 animate__animated animate__slideInLeft">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+        {% endblock %}
+
+        {% block contenido %}
+        <div class="text-center mb-5">
+            <div class="feature bg-contact bg-gradient text-white rounded-3 mb-3"><i class="bi bi-basket-fill"></i></div>
+        </div>
+
+        {% if 'OK' in request.GET %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Producto registrado <strong>satisfactoriamente</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        {% if 'FAIL' in request.GET %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                No se pudo registrar el Producto... <strong>Intentalo mas tarde</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+        <form action="" method="POST" id="Agregar_Producto" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Campo Codigo Producto -->
+            <div class="form-floating mb-3">
+                {{form.idProducto}}
+                <label class="form-label" for="codigo">Codigo Producto</label>
+                {{form.idProducto.errors}}
+            </div>
+
+            <!-- Campo Nombre -->
+            <div class="form-floating mb-3">
+                {{form.nombre}}
+                <label class="form-label" for="nombre">Nombre Producto</label>
+                {{form.nombre.errors}}
+            </div>
+
+            <!-- Campo Descripcion -->
+            <div class="form-floating mb-3">
+                {{form.descripcion}}
+                <label class="form-label" for="descripcion">Descricion</label>
+                {{form.descripcion.errors}}
+            </div>
+
+            <!-- Campo Imangen -->
+            <div class="form mb-3">
+                <label class="form-label" for="imagen">Imagen</label>
+                {{form.image_producto}}
+                {{form.image_producto.errors}}
+            </div>
+
+            <!-- Campo Link Instagram -->
+            <div class="form-floating mb-3">
+                {{form.precio}}
+                <label class="form-label" for="precio">Precio</label>
+                {{form.precio.errors}}
+            </div>
+
+            <!-- Campo Link Whatsapp -->
+            <div class="form-floating mb-3">
+                {{form.stock}}
+                <label class="form-label" for="stock">Stock</label>
+                {{form.stock.errors}}
+            </div>
+
+            <!-- Campo Link Twitter -->
+            <div class="form-floating mb-5">
+                {{form.marca}}
+                <label class="form-label" for="marca">Marca</label>
+                {{form.marca.errors}}
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-contact btn-lg" id="enviar" type="submit">Agregar</button>
+                <a href="{% url 'productos' %}" class="btn btn-contact btn-lg" id="enviar" type="submit">Volver</a>
+            </div>
+        </form>
+    {% endblock %}

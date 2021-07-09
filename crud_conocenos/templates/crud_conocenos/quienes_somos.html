@@ -1,0 +1,104 @@
+
+
+        {% extends 'core/base_admin.html' %}
+
+        {% load static %}
+
+        {% block title %} Quienes Somos {% endblock %}
+
+        {% block img-header %} {% static 'core/assets/quienes_somos/bg_header_v2.jpg' %} {% endblock %}
+
+        {% block text_header %}
+            <h1 class="display-5 fw-bolder text-white mb-2 animate__animated animate__slideInLeft">CONOCE<span class="title_color">NOS</span></h1>
+            <p class="lead text-white-50 mb-4 animate__animated animate__slideInLeft">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+        {% endblock %}
+
+        {% block contenido %}
+        <!-- Seccion Tabla-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="d-grid gap-2 d-md-block">
+                                      <h5 class="card-title pt-3 pb-4"><i class="bi bi-people-fill"></i> Equipo de Trabajo</h5>
+                                  </div>
+                                </div>
+  
+                                <div class="col-lg-6">
+                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                      <a href="{% url 'add_equipo' %}"><button class="btn btn-success me-md-2" type="button">Agregar Integrante</button></a>
+                                    </div>
+                                </div>
+  
+                            </div>
+
+                            {% if 'OK' in request.GET %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Integrante actualizado <strong>satisfactoriamente</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+                            {% if 'FAIL' in request.GET %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    No se pudo actualizar el integrante... <strong>Intentalo mas tarde</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+
+                          <!-- tabla -->
+                          <table class="table table-dark table-hover table-bordered" id="tabla_equipo">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Nombre Completo</th>
+                                <th scope="col">Redes Sociales</th>
+                                <th scope="col">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for e in Equipos%}  
+                              <tr>
+                                <th scope="row">{{e.idIntegrante}}</th>
+                                <td class="text-center">
+                                    {% if e.image_conoce %}
+                                        <img src="{{e.image_conoce.url}}" alt="Imagen_Integrante">
+                                    {% else %}
+                                    <img src="{% static 'core/assets/quienes_somos/imagen_not_found.png' %}" alt="Imagen_Integrante">
+                                    {% endif %}
+
+                                </td>
+                                <td>
+                                    <span class="table_name">{{e.nombre}}</span>
+                                    <br> 
+                                    <p>{{e.description}}</p>
+                                </td>
+                                <td class="socials">
+                                    {% if e.link_facebook %}
+                                        <a href="{{e.link_facebook}}" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    {% endif %}
+
+                                    {% if e.link_instagram %}
+                                        <a href="{{e.link_instagram}}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    {% endif %}
+
+                                    {% if e.link_whatsapp %}
+                                        <a href="{{e.link_whatsapp}}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                                    {% endif %}
+
+                                    {% if e.link_twitter %}
+                                        <a href="{{e.link_twitter}}" target="_blank"><i class="bi bi-twitter"></i></a>
+                                    {% endif %}
+                                </td>
+                                <td class="btn-accion">
+                                    <a href="{% url 'update_equipo' e.idIntegrante %}"><button type="button" class="btn btn-warning">Modificar</button></a>
+                                    <a href="{% url 'delete_equipo' e.idIntegrante %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                           </table>
+                          
+                        </div>
+                      </div>
+        {% endblock %}

@@ -1,0 +1,105 @@
+        
+        
+        
+        {% extends 'core/base_admin.html' %}
+        {% load static %}
+
+        {% block title %} Veterinarios Socios {% endblock %}
+
+        {% block img-header %} {% static 'core/assets/veterinario/bg_header_v5.jpg' %} {% endblock %}
+
+        {% block text_header %}
+            <h1 class="display-5 fw-bolder text-white mb-2 animate__animated animate__slideInLeft">VETERINARIOS <span class="title_color">ASOCIADOS</span></h1>
+            <p class="lead text-white-50 mb-4 animate__animated animate__slideInLeft">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+        {% endblock %}
+
+        <!-- Seccion Tabla-->
+        {% block contenido %}
+        <!-- Seccion Tabla-->
+                    <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                              <div class="col-lg-6">
+                                <div class="d-grid gap-2 d-md-block">
+                                    <h5 class="card-title pt-3 pb-4"><i class="bi bi-people-fill"></i> Veterinarios Socios</h5>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-6">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a href="{% url 'add_veterinario' %}"><button class="btn btn-success me-md-2" type="button">Agregar Veterinario</button></a>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                            {% if 'OK' in request.GET %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Integrante actualizado <strong>satisfactoriamente</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+                            {% if 'FAIL' in request.GET %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    No se pudo actualizar el integrante... <strong>Intentalo mas tarde</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endif %}
+
+                          <!-- tabla -->
+                          <table class="table table-dark table-hover table-bordered" id="tabla_veterinarios">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Nombre Completo</th>
+                                <th scope="col">Redes Sociales</th>
+                                <th scope="col">Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for v in veterinario %}  
+                              <tr>
+                                <th scope="row">{{v.idVeterinario}}</th>
+                                <td class="text-center">
+                                    {% if v.image_veterinario %}
+                                        <img src="{{v.image_veterinario.url}}" alt="Imagen_Integrante">
+                                    {% else %}
+                                    <img src="{% static 'core/assets/veterinario/imagen_not_found.png' %}" alt="Imagen_Integrante">
+                                    {% endif %}
+
+                                </td>
+                                <td>
+                                    <span class="table_name">{{v.nombre}}</span>
+                                    <br> 
+                                    <p>{{v.descripcion}}</p>
+                                </td>
+                                <td class="socials">
+                                    {% if v.link_facebook %}
+                                        <a href="{{v.link_facebook}}" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    {% endif %}
+
+                                    {% if v.link_instagram %}
+                                        <a href="{{v.link_instagram}}" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    {% endif %}
+
+                                    {% if v.link_whatsapp %}
+                                        <a href="{{v.link_whatsapp}}" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                                    {% endif %}
+
+                                    {% if v.link_twitter %}
+                                        <a href="{{v.link_twitter}}" target="_blank"><i class="bi bi-twitter"></i></a>
+                                    {% endif %}
+                                </td>
+                                <td class="btn-accion">
+                                    <a href="{% url 'update_veterinario' v.idVeterinario %}"><button type="button" class="btn btn-warning">Modificar</button></a>
+                                    <a href="{% url 'delete_veterinario' v.idVeterinario %}"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                           </table>
+                          
+                        </div>
+                      </div>
+        {% endblock %}

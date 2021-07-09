@@ -1,0 +1,125 @@
+        
+        
+        {% extends 'core/base_user.html' %}
+
+        {% load static %}
+
+        {% block title %} Contacto {% endblock %}
+
+        {% block img-header %} {% static 'core/assets/contacto/bg_header_v4.jpg' %} {% endblock %}
+
+        {% block text_header %}
+            <h1 class="display-5 fw-bolder text-white mb-2 animate__animated animate__slideInLeft">CONTA<span class="title_color">CTO</span></h1>
+            <p class="lead text-white-50 mb-4 animate__animated animate__slideInLeft">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+      {% endblock %}
+
+
+      {% block contenido %}
+        <!-- Contact section-->
+                    <div class="text-center mb-5">
+                      <div class="feature bg-contact bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+                  </div>
+
+                    <div class="col-lg-6 contact"> 
+                        <form id="contactForm">
+
+                            <!-- Rut input-->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="input-rut" class="form-control" placeholder="Rut"/>
+                                <label class="form-label" for="input-rut">Rut</label>
+                                <span id="input-rut-error-msg" class="error-msg"></span>
+                            </div>
+                            
+                            <!-- Nombre input-->
+                            <div class="form-floating mb-3">
+                              <input type="text" id="input-firstname" class="form-control" placeholder="Nombre" />
+                              <label for="input-firstname">Nombre</label>
+                              <span id="input-firstname-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Apellido input-->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="input-lastname" class="form-control"  placeholder="Apellido"/>
+                                <label class="form-label" for="input-lastname">Apellido</label>
+                                <span id="input-lastname-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Edad input-->
+                            <div class="form-floating mb-3">
+                                <input type="number" id="input-edad" class="form-control"  placeholder="Edad"/>
+                                <label class="form-label" for="input-edad">Edad</label>
+                                <span id="input-lastname-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Email input-->
+                            <div class="form-floating mb-3">
+                                <input type="email" id="input-email" class="form-control" placeholder="Email" />
+                                <label class="form-label" for="input-email">Email</label>
+                                <span id="input-email-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Telefono input-->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="input-telefono" class="form-control" placeholder="(+569) 21547856"/>
+                                <label class="form-label" for="input-telefono">Telefono</label>
+                                <span id="input-telefono-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Genero input-->
+                            <div class="mb-3">
+                              <div class="form-group row">
+                                <label for="genero" class="col-form-label font-weight-bold mb-3">Seleccione su genero:</label>
+                                <div class="col-sm-12 col-md-7">
+                                  <div class="form-check">
+                                      <div class="row">
+                                    <div class="form-check-label col-lg-6">
+                                      <label for="masculino" class="form-check-label">
+                                        <input class="form-check-input" type="radio" name="genero" id="masculino" value="masculino"> masculino
+                                      </label>
+                                    </div>
+
+                                      <div class="form-check-label col-lg-6">
+                                        <label for="femenino" class="form-check-label">
+                                          <input class="form-check-input" type="radio" name="genero" id="femenino" value="femenino"> femenino
+                                        </label>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                              </div>
+                            </div>
+
+                            <!-- Pais input-->
+                            <div class="mb-3">
+                                <label class="mb-3" for="input-country">Pais:</label>
+                                <select id="input-country" class="form-control">
+                                  <option selected>Chile</option>
+                                  <option>Colombia</option>
+                                  <option>Peru</option>
+                                  <option>Argentina</option>
+                                  <option>Brasil</option>
+                                </select>
+                            </div>
+
+                            <!-- Ciudad input-->
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="input-city"  placeholder="Ciudad"/>
+                                <label for="input-city">Ciudad</label>
+                                <span id="input-city-error-msg" class="error-msg"></span>
+                            </div>
+
+                            <!-- Mensaje input-->
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" id="input-info" rows="4" style="height: 10rem" placeholder="Ingresa tu mensaje aqui..."></textarea>
+                                <label for="input-info">Motivo de contacto</label>
+                            </div>
+
+                            <!-- Enviar Button-->
+                            <div class="d-grid"><button class="btn btn-contact btn-lg" id="btn-contact" type="submit">Enviar</button></div>
+                        </form>
+                    </div>
+      {% endblock %}
+
+      {% block scripts %}
+        <script src="{% static 'core/js/my_scripts.js' %}"></script>
+      {% endblock %}
