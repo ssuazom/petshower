@@ -64,7 +64,7 @@
                                 <th scope="row">{{e.idIntegrante}}</th>
                                 <td class="text-center">
                                     {% if e.image_conoce %}
-                                        <img src="{{e.image_conoce.url}}" alt="Imagen_Integrante">
+                                        <img  class="img_table" src="{{e.image_conoce.url}}" alt="Imagen_Integrante">
                                     {% else %}
                                     <img src="{% static 'core/assets/quienes_somos/imagen_not_found.png' %}" alt="Imagen_Integrante">
                                     {% endif %}
