@@ -120,7 +120,7 @@
                                 <th scope="row">{{Producto.idProducto}}</th>
                                 <td class="text-center">
                                   {% if Producto.image_producto %}
-                                    <img src="{{Producto.image_producto.url}}" alt="Tuallitas_Perfumadas">
+                                    <img class="img_table" src="{{Producto.image_producto.url}}" alt="Tuallitas_Perfumadas">
                                     {% else %}
                                     <img src="{% static 'core/assets/productos/imagen_not_found.png' %}" alt="Imagen_Integrante">
                                     {% endif %}
