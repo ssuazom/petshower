@@ -4,6 +4,16 @@
     src: url(../fond/Bauhaus_93_Regular.ttf);
 }
 
+.table-responsive {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.img_table {
+    width: 150px;
+    height: 150px;
+}
 
 /************ ------ Estilos header ------ ************/
 
